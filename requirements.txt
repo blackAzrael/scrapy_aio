@@ -1,0 +1,12 @@
+aiohttp==3.7.3
+cchardet==2.1.7
+chardet==3.0.4
+colorama==0.4.4
+colorlog==4.6.2
+fake-useragent==0.1.11
+idna==3.1
+motor==2.3.0
+multidict==5.1.0
+pymongo==3.11.2
+redis==3.5.3
+w3lib==1.22.
