@@ -16,3 +16,19 @@ https://github.com/xiaochonzi/mavic
 ## 觉得好的朋友不要吝啬你的小星星
 
 ## 若有问题欢迎大家提交issue和PR 
+
+## 使用 
+> pip3 install -r requirements.txt
+> 
+>pip3 install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
+
+### 使用方法同 scrapy 大致相同
+
+``` bash
+cd template/spider
+python3 365spider.py
+
+```
+
+### 相关配置在setting下
+
