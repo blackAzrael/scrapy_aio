@@ -55,10 +55,8 @@ class ComSpider(Spider):
         meta={
             "download_timeout":60,
         }
-        for i in range(5):
-
-
-            yield Request(url=f"https://www.baidu.com/",meta=meta ,dont_filter=True, callback=self.parse_content)
+        for i in range(1000):
+            yield Request(url=f"http://www.baidu.com/s?wd={i}",meta=meta ,dont_filter=True, callback=self.parse_content)
 
     async def parse_content(self,response):
         logger.debug(response.url)

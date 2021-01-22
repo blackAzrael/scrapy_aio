@@ -62,10 +62,10 @@ LOG_LEVEL = 'INFO'
 # CONCURRENT_REQUESTS = 100  # 并发
 MAX_POOL = 8  # 并发
 
-DNS_TIMEOUT = 20  # 超时时间设置
+DNS_TIMEOUT = 20  # DNS解析超时时间设置
 RETRY_TIMES = 2  # initial response retries = 3 requests  一共访问次数
 
-DOWNLOAD_TIMEOUT = 60
+DOWNLOAD_TIMEOUT = 60 # 下载超时时间
 
 # 爬虫计数日志
 SCRAPY_COUNT = False

@@ -86,8 +86,8 @@ class RotateUserAgentMiddleware(object):
 class ProxyMiddleware(object):
 
     def __init__(self):
-        # self.rc = redis.StrictRedis(host="47.100.88.79",port=6379,password="627510")
-        self.rc = redis.StrictRedis(host="127.0.0.1", port=6379)
+        self.rc = redis.StrictRedis(host="47.100.88.79",port=6379,password="627510")
+        # self.rc = redis.StrictRedis(host="127.0.0.1", port=6379)
 
     async def process_request(self, request, spider):
         proxy = await self.get_proxy()

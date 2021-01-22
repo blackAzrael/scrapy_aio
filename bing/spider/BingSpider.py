@@ -54,12 +54,18 @@ class ComSpider(Spider):
         yield Request(url='https://bing.ioliu.cn/', dont_filter=True, callback=self.parse)
 
     async def parse(self, response):
-        selector = etree.HTML(response.text)
-        max_page_div = selector.xpath("//div[@class='page']/span/text()")[0]
-        # 获取最大页面数
-        max_page = max_page_div.strip().split("/")[1]
-        max_page = int(max_page)
-        logger.debug(f"max_page:{max_page}")
+        if response.status != 200:
+            logger.debug(response.status)
+            return
+        # logger.debug(response.status)
+        # logger.debug(response.text)
+        # selector = etree.HTML(response.text)
+        # max_page_div = selector.xpath("//div[@class='page']/span/text()")[0]
+        # # 获取最大页面数
+        # max_page = max_page_div.strip().split("/")[1]
+        # max_page = int(max_page)
+        # logger.debug(f"max_page:{max_page}")
+        max_page = 20
         for x in range(max_page):
             yield Request(url=f"https://bing.ioliu.cn/?p={x}", dont_filter=True, callback=self.parse_content)
 
