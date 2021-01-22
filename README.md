@@ -24,18 +24,17 @@ https://github.com/xiaochonzi/mavic
 > 
 >pip3 install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
 
-### 使用方法同 scrapy 大致相同
-
-``` bash
-cd template/spider
-python3 365spider.py
+## 示例
+``` shell script
+cd scrapy3
+python3 template/spider/365spider.py
 
 ```
 
 ### 相关配置在setting下
 
 
-## 添加bing壁纸爬取
+## bing壁纸爬取
 ```shell script
 cd scrapy3
 python3 bing/spider/BingSpider.py
