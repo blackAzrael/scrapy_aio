@@ -13,7 +13,6 @@ https://github.com/xiaochonzi/mavic
 - 使用信号量控制协程数目
  
 ---
-## 觉得好的朋友不要吝啬你的小星星
 
 ## 若有问题欢迎大家提交issue和PR 
 
