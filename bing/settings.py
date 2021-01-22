@@ -60,7 +60,7 @@ DOWNLOADER_MIDDLEWARES = {
 LOG_LEVEL = 'INFO'
 # LOG_LEVEL = 'DEBUG'
 # CONCURRENT_REQUESTS = 100  # 并发
-MAX_POOL = 10  # 并发
+MAX_POOL = 8  # 并发
 
 DNS_TIMEOUT = 20  # 超时时间设置
 RETRY_TIMES = 2  # initial response retries = 3 requests  一共访问次数

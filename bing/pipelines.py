@@ -44,9 +44,9 @@ class ImageSavePipelines(object):
         pass
 
     async def process_item(self, item, spider):
-        logger.debug(f"{item['name']}")
-        logger.warning(f"{self.name}, '管道结果'")
+        # logger.debug(f"{item['name']}")
         await self.save_images(item)
+        logger.warning(f"{item['name']}, '保存成功'")
 
     async def save_images(self,item):
         now_path = os.getcwd()

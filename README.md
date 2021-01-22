@@ -34,3 +34,8 @@ python3 365spider.py
 
 
 ## 添加bing壁纸爬取
+```shell script
+cd bing
+python3 BingSpider.py
+
+```
