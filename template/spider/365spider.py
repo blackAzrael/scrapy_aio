@@ -15,7 +15,7 @@ import platform
 import os
 import sys
 now_path = os.getcwd()
-root_path = now_path.split("scrapy3")[0]+"scrapy3"
+root_path = now_path.split("scrapy3")[0]+"\\scrapy3"
 os.chdir(root_path)
 sys.path.append(root_path)
 from template import settings
@@ -52,12 +52,17 @@ class ComSpider(Spider):
     async def parse(self, response):
         logger.warning(f"parse {response.meta}")
         logger.warning(f"parse {response.url}")
+        meta={
+            "download_timeout":60,
+        }
         for i in range(5):
 
-            yield Request(url=f"https://www.baidu.com/", dont_filter=True, callback=self.parse_content)
+
+            yield Request(url=f"https://www.baidu.com/",meta=meta ,dont_filter=True, callback=self.parse_content)
 
     async def parse_content(self,response):
         logger.debug(response.url)
+        logger.debug(response.status)
 
         yield {"result": response.url}
 
@@ -72,6 +77,5 @@ if __name__ == '__main__':
     s = Settings()
     s.setmodule(settings)
     crawler = Crawler(ComSpider, s, loop)
-    # import_plugin("template/plugin", "template.plugin")
     loop.run_until_complete(start())
     loop.close()
