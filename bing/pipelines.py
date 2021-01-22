@@ -31,16 +31,22 @@ class DefaultPipelines(object):
 class ImageSavePipelines(object):
     name = '图片保存 pipeline'
 
+    def __init__(self):
+        self.dir_name = None
+
     @classmethod
     def from_crawler(cls, crawler):
         return cls()
 
     async def open_spider(self, spider):
-        logger.info("加载默认管道")
-        pass
+        now_path = os.getcwd()
+        self.dir_name = now_path + "/bing/images/"
+        if not os.path.exists(self.dir_name):
+            logger.debug(f"创建目录{self.dir_name}")
+            os.makedirs(self.dir_name)
+
 
     async def close_spider(self, spider):
-        # print("close spider 00000")
         pass
 
     async def process_item(self, item, spider):
@@ -49,8 +55,7 @@ class ImageSavePipelines(object):
         logger.warning(f"{item['name']}, '保存成功'")
 
     async def save_images(self,item):
-        now_path = os.getcwd()
-        file_name = now_path + "/bing/images/" + item['name'] + ".jpeg"
+        file_name = self.dir_name + item['name'] + ".jpeg"
         file = open(file_name, 'wb')
         file.write(item['data'])
         file.close()

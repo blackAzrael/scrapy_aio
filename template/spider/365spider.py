@@ -15,7 +15,7 @@ import platform
 import os
 import sys
 now_path = os.getcwd()
-root_path = now_path.split("scrapy3")[0]+"\\scrapy3"
+root_path = now_path.split("scrapy3")[0]+"/scrapy3"
 os.chdir(root_path)
 sys.path.append(root_path)
 from template import settings
