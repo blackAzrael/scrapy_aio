@@ -32,3 +32,5 @@ python3 365spider.py
 
 ### 相关配置在setting下
 
+
+## 添加bing壁纸爬取
