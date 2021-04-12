@@ -14,16 +14,17 @@ import asyncio
 import platform
 import os
 import sys
+
 now_path = os.getcwd()
-root_path = now_path.split("scrapy3")[0]+"/scrapy3"
+root_path = now_path.split("scrapy_aio")[0] + "/scrapy_aio"
 os.chdir(root_path)
 sys.path.append(root_path)
 from template import settings
-from scrapy3.conf.settings import Settings
-from scrapy3.core.crawler import Crawler
-from scrapy3.http.request import Request
-from scrapy3.spiders import Spider
-from scrapy3.log_handler import LogHandler
+from scrapy_aio.conf.settings import Settings
+from scrapy_aio.core.crawler import Crawler
+from scrapy_aio.http.request import Request
+from scrapy_aio.spiders import Spider
+from scrapy_aio.log_handler import LogHandler
 
 logger = log = LogHandler(__name__)
 
@@ -31,6 +32,7 @@ sysstr = platform.system()
 if sysstr == "Windows":
     print("Call Windows tasks")
     import selectors
+
     selector = selectors.SelectSelector()  # New line
     loop = asyncio.SelectorEventLoop(selector)
 elif sysstr == "Linux":
@@ -46,19 +48,19 @@ class ComSpider(Spider):
     name = 'test'
 
     def start_requests(self):
-
         yield Request(url='http://youdao.com', dont_filter=True, callback=self.parse)
 
     async def parse(self, response):
         logger.warning(f"parse {response.meta}")
         logger.warning(f"parse {response.url}")
-        meta={
-            "download_timeout":60,
+        meta = {
+            "download_timeout": 60,
         }
         for i in range(1000):
-            yield Request(url=f"http://www.baidu.com/s?wd={i}",meta=meta ,dont_filter=True, callback=self.parse_content)
+            yield Request(url=f"http://www.baidu.com/s?wd={i}", meta=meta, dont_filter=True,
+                          callback=self.parse_content)
 
-    async def parse_content(self,response):
+    async def parse_content(self, response):
         logger.debug(response.url)
         logger.debug(response.status)
 
@@ -66,7 +68,6 @@ class ComSpider(Spider):
 
 
 async def start():
-
     await crawler.crawl()
     await crawler.start()
 

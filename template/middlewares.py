@@ -7,9 +7,9 @@ import aiohttp
 import redis
 from fake_useragent import UserAgent
 
-from scrapy3.http import Response
+from scrapy_aio.http import Response
 
-from scrapy3.log_handler import LogHandler
+from scrapy_aio.log_handler import LogHandler
 logger = log = LogHandler(__name__)
 
 

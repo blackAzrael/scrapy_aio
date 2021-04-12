@@ -1,9 +1,9 @@
-from scrapy3.utils.misc import load_object
+from scrapy_aio.utils.misc import load_object
 
 from . import connection
 from .dupefilter import RFPDupeFilter
 
-from scrapy3.log_handler import LogHandler
+from scrapy_aio.log_handler import LogHandler
 logger = log = LogHandler("redis_scheduler")
 
 # default values

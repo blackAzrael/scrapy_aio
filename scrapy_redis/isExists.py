@@ -2,8 +2,8 @@
 import redis
 
 from scrapy_redis.BloomfilterOnRedis import BloomFilter
-from scrapy3.utils.request import request_fingerprint
-from scrapy3.http import Request
+from scrapy_aio.utils.request import request_fingerprint
+from scrapy_aio.http import Request
 
 rconn = redis.Redis('127.0.0.1', 6379)
 

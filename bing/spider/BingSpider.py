@@ -17,15 +17,15 @@ import sys
 from urllib.parse import urljoin
 
 now_path = os.getcwd()
-root_path = now_path.split("scrapy3")[0] + "/scrapy3"
+root_path = now_path.split("scrapy_aio")[0] + "/scrapy_aio"
 os.chdir(root_path)
 sys.path.append(root_path)
 from bing import settings
-from scrapy3.conf.settings import Settings
-from scrapy3.core.crawler import Crawler
-from scrapy3.http.request import Request
-from scrapy3.spiders import Spider
-from scrapy3.log_handler import LogHandler
+from scrapy_aio.conf.settings import Settings
+from scrapy_aio.core.crawler import Crawler
+from scrapy_aio.http.request import Request
+from scrapy_aio.spiders import Spider
+from scrapy_aio.log_handler import LogHandler
 from lxml import etree
 
 logger = log = LogHandler(__name__)
@@ -59,15 +59,15 @@ class ComSpider(Spider):
             return
         # logger.debug(response.status)
         # logger.debug(response.text)
-        # selector = etree.HTML(response.text)
-        # max_page_div = selector.xpath("//div[@class='page']/span/text()")[0]
-        # # 获取最大页面数
-        # max_page = max_page_div.strip().split("/")[1]
-        # max_page = int(max_page)
-        # logger.debug(f"max_page:{max_page}")
-        max_page = 20
-        for x in range(max_page):
-            yield Request(url=f"https://bing.ioliu.cn/?p={x}", dont_filter=True, callback=self.parse_content)
+        selector = etree.HTML(response.text)
+        max_page_div = selector.xpath("//div[@class='page']/span/text()")[0]
+        # 获取最大页面数
+        max_page = max_page_div.strip().split("/")[1]
+        max_page = int(max_page)
+        logger.debug(f"max_page:{max_page}")
+        max_page = 1
+        # for x in range(max_page):
+        #     yield Request(url=f"https://bing.ioliu.cn/?p={x}", dont_filter=True, callback=self.parse_content)
 
     async def parse_content(self, response):
         # 获取页面所有的图片url

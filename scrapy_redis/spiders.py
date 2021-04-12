@@ -1,9 +1,9 @@
-# from scrapy3 import spiders, signals
+# from scrapy_aio import spiders, signals
 # from scrapy.exceptions import DontCloseSpider
 
-from scrapy3.spiders import Spider
+from scrapy_aio.spiders import Spider
 from . import connection
-from scrapy3.log_handler import LogHandler
+from scrapy_aio.log_handler import LogHandler
 from .utils import bytes_to_str
 import asyncio
 

@@ -1,6 +1,6 @@
 import time
 
-from scrapy3.utils.request import request_fingerprint
+from scrapy_aio.utils.request import request_fingerprint
 
 from . import connection
 from .BloomfilterOnRedis import BloomFilter

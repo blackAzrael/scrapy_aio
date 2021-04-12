@@ -21,7 +21,7 @@ DOWNLOADER_MIDDLEWARES = {
 
     # 'template.middlewares.RetrayMiddleware': 633,
     'template.middlewares.ProcessAllExceptionMiddleware': 643,
-    'template.middlewares.RotateUserAgentMiddleware': 743,       # 随机浏览器UA
+    # 'template.middlewares.RotateUserAgentMiddleware': 743,       # 随机浏览器UA
     # 'template.middlewares.ProxyMiddleware': 843,                 # 代理中间件
 }
 # SCHEDULER = 'scrapy_redis.scheduler.Scheduler'
@@ -29,7 +29,7 @@ SCHEDULER_PERSIST = True  # 默认true   是否保存 过滤的url  true 为保�
 # SCHEDULER_QUEUE_CLASS = 'scrapy_redis.queue_redis.SpiderPriorityQueue'      # redis 优先级队列
 # SCHEDULER_QUEUE_CLASS = 'scrapy_redis.queue_redis.SpiderQueue'
 REDIS_QUEUE_NAME = 'spider'
-# SCHEDULER_QUEUE_CLASS = 'scrapy3-master.scrapy_redis.queue.SpiderSimpleQueue'
+# SCHEDULER_QUEUE_CLASS = 'scrapy_aio-master.scrapy_redis.queue.SpiderSimpleQueue'
 
 # 下载器
 # DOWNLOAD_HANDLER = "template.download_handler.DownloadHandler"               # chrome动态下载器

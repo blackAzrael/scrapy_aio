@@ -1,4 +1,4 @@
-from scrapy3.utils.serialize import ScrapyJSONEncoder
+from scrapy_aio.utils.serialize import ScrapyJSONEncoder
 from twisted.internet.threads import deferToThread
 
 from . import connection

@@ -17,7 +17,7 @@ DOWNLOADER_MIDDLEWARES = {
 
     # 'bing.middlewares.RetrayMiddleware': 633,
     'bing.middlewares.ProcessAllExceptionMiddleware': 643,
-    'bing.middlewares.RotateUserAgentMiddleware': 743,       # 随机浏览器UA
+    # 'bing.middlewares.RotateUserAgentMiddleware': 743,       # 随机浏览器UA
     # 'bing.middlewares.ProxyMiddleware': 843,                 # 代理中间件
 }
 # SCHEDULER = 'scrapy_redis.scheduler.Scheduler'
@@ -25,7 +25,7 @@ DOWNLOADER_MIDDLEWARES = {
 # SCHEDULER_QUEUE_CLASS = 'scrapy_redis.queue_redis.SpiderPriorityQueue'      # redis 优先级队列
 # SCHEDULER_QUEUE_CLASS = 'scrapy_redis.queue_redis.SpiderQueue'
 # REDIS_QUEUE_NAME = 'spider'
-# SCHEDULER_QUEUE_CLASS = 'scrapy3-master.scrapy_redis.queue.SpiderSimpleQueue'
+# SCHEDULER_QUEUE_CLASS = 'scrapy_aio-master.scrapy_redis.queue.SpiderSimpleQueue'
 
 # 下载器
 # DOWNLOAD_HANDLER = "bing.download_handler.DownloadHandler"               # chrome动态下载器

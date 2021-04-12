@@ -12,7 +12,7 @@
 """
 import redis
 
-from scrapy3.log_handler import LogHandler
+from scrapy_aio.log_handler import LogHandler
 logger = log = LogHandler("test")
 
 rconn = redis.Redis('127.0.0.1', 6379)

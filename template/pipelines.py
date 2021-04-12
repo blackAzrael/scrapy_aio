@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 from motor.motor_asyncio import AsyncIOMotorClient
-from scrapy3.log_handler import LogHandler
+from scrapy_aio.log_handler import LogHandler
 
 logger = LogHandler(__name__)
 

@@ -1,6 +1,6 @@
-from scrapy3.utils.reqser import request_to_dict, request_from_dict, _find_method
-from scrapy3.http import Request
-from scrapy3.log_handler import LogHandler
+from scrapy_aio.utils.reqser import request_to_dict, request_from_dict, _find_method
+from scrapy_aio.http import Request
+from scrapy_aio.log_handler import LogHandler
 
 logger = log = LogHandler(__name__)
 
