@@ -2,7 +2,10 @@
 <img alt="python3.7+" src="https://img.shields.io/badge/python-3.7%2B-green" />
 
 # scrapy_aio
-重写scrapy使用python3.7+ 异步asyncio+aiohttp
+Windows and Linux
+重构scrapy使用python3.7+ 、aiohttp、uvloop、asyncio简化代码，实现大量并发
+
+Refactor scrapy to use python3.7+, aiohttp, uvloop, asyncio to simplify the code and achieve a lot of concurrency
 
 
 ## 基础版本来自
