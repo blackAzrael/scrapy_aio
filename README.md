@@ -1,7 +1,7 @@
 
 <img alt="python3.7+" src="https://img.shields.io/badge/python-3.7%2B-green" />
 
-# scrapy3
+# scrapy_aio
 重写scrapy使用python3.7+ 异步asyncio+aiohttp
 
 
