@@ -5,9 +5,7 @@ import traceback
 
 from scrapy_aio.conf.settings import Settings
 from scrapy_aio.core.engine import Engine
-from scrapy_aio.log import (get_mavic_root_handler,
-                            install_mavic_root_handler,
-                            configure_logging)
+from scrapy_aio.log import configure_logging
 from scrapy_aio.spiders import Spider
 from scrapy_aio.utils.misc import load_object
 

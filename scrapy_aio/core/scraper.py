@@ -9,7 +9,9 @@ from scrapy_aio.utils.misc import load_object
 from scrapy_aio.utils.python import get_result_list
 
 from scrapy_aio.log_handler import LogHandler
+
 logger = log = LogHandler(__name__)
+
 
 class Slot(object):
     def __init__(self):
@@ -36,7 +38,7 @@ class Slot(object):
             riate = int((self.req_all_num - self.req_last_num))
             iiate = int((self.itm_all_num - self.itm_last_num))
             logger.info(f"完成请求总数{self.req_all_num} 平均每分钟完成数目{riate}  "
-                         f"完成item总数{self.itm_all_num} 平均每分钟完成数目{iiate}")
+                        f"完成item总数{self.itm_all_num} 平均每分钟完成数目{iiate}")
             self.req_last_num = self.req_all_num
             self.itm_last_num = self.itm_all_num
 
@@ -54,6 +56,7 @@ class Slot(object):
         self.t.setDaemon(True)
         self.t.start()
         self.coro = asyncio.run_coroutine_threadsafe(coroutine, self.new_loop)  # 这几个是关键，代表在新线程中事件循环不断“游走”执行
+
 
 class Scraper(object):
 
@@ -83,7 +86,7 @@ class Scraper(object):
         response.request = request
         try:
             # await self._scrape(response, request, spider)
-            await asyncio.wait_for(self._scrape(response, request, spider), 10*60.0)
+            await asyncio.wait_for(self._scrape(response, request, spider), 10 * 60.0)
         # logger.info("处理结束 scrape")
         except Exception as e:
             logger.exception(e)

@@ -46,7 +46,7 @@ class ProcessAllExceptionMiddleware(object):
         if str(response.status).startswith('4') or str(response.status).startswith('5'):
             # 随意封装，直接返回response，spider代码中根据url==''来处理response
             # print(response.body)
-            response = Response(url=f"599 状态码：{response.status} url:{request.url}", status=599)
+            response = Response(url=f"599 4xx or 5xx 状态码：{response.status} url:{request.url}", status=599)
             return response
             # return request
         # 其他状态码不处理
@@ -56,7 +56,7 @@ class ProcessAllExceptionMiddleware(object):
         # 捕获几乎所有的异常
         if isinstance(exception, self.ALL_EXCEPTIONS):
             # 在日志中打印异常类型
-            logger.error('发现异常: %s %s' % (exception,request.url))
+            logger.error('发现异常: %s %s' % (exception, request.url))
             # 随意封装一个response，返回给spider
             response = Response(url=f'599 exception  url:{request.url}', status=599)
             return response

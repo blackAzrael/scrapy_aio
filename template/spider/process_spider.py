@@ -1,15 +1,16 @@
 # -*- coding: utf-8 -*-
 """
 -------------------------------------------------
-   File Name：     365spider
+   File Name：     process_spider
    Description :
    Author :       dean
-   date：          2020/7/24 17:55
+   date：          2021/5/31 21:31
 -------------------------------------------------
    Change Activity:
-                   17:55
+                   21:31
 -------------------------------------------------
 """
+
 import asyncio
 import platform
 import os
@@ -25,7 +26,10 @@ from scrapy_aio.core.crawler import Crawler
 from scrapy_aio.http.request import Request
 from scrapy_aio.spiders import Spider
 from scrapy_aio.log_handler import LogHandler
-from rich.progress import track, Progress
+from rich.live import Live
+from rich.panel import Panel
+from rich.progress import Progress, SpinnerColumn, BarColumn, TextColumn
+from rich.table import Table
 
 logger = log = LogHandler(__name__)
 
@@ -58,13 +62,15 @@ class ComSpider(Spider):
             "download_timeout": 60,
         }
         for i in range(100):
-            yield Request(url=f"https://www.baidu.com/s?wd={i}", meta=meta, dont_filter=True,
+            yield Request(url=f"http://www.baidu.com/s?wd={i}", meta=meta, dont_filter=True,
                           callback=self.parse_content)
 
     async def parse_content(self, response):
         # while not progress.finished:
-        progress.update(download_task, advance=1)
+        # progress.update(task1, advance=1)
+        download_process.update(job_download, advance=1)
         logger.debug(response.url)
+        # logger.debug(response.status)
 
         yield {"result": response.url}
 
@@ -74,9 +80,22 @@ async def start():
     await crawler.start()
 
 
+download_process = job_progress = Progress(
+    "{task.description}",
+    SpinnerColumn(),
+    BarColumn(),
+    TextColumn("[progress.percentage]{task.percentage:>3.0f}%"),
+)
+job_download = download_process.add_task("[green]downloading")
+progress_table = Table.grid()
+
+progress_table.add_row(
+    Panel.fit(job_progress, title="[b]Jobs", border_style="red", padding=(1, 2)),
+)
+
+
 if __name__ == '__main__':
-    with Progress() as progress:
-        download_task = progress.add_task("[red]Downloading...", total=100)
+    with Live(progress_table, refresh_per_second=10):
         s = Settings()
         s.setmodule(settings)
         crawler = Crawler(ComSpider, s, loop)

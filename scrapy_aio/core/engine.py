@@ -3,12 +3,12 @@ import asyncio
 from time import time
 from typing import Iterable
 
+from scrapy_aio.log_handler import LogHandler
 from scrapy_aio.core.scraper import Scraper
 from scrapy_aio.http import Request
 from scrapy_aio.utils.misc import load_object
 
 # logger = logging.getLogger(__name__)
-from scrapy_aio.log_handler import LogHandler
 
 logger = LogHandler("engine")
 logger.setLevel("DEBUG")
@@ -45,8 +45,6 @@ class Slot(object):
         if self.closing:
             if self.nextcall:
                 self.nextcall.cancel()
-
-
 
 
 class Engine(object):
@@ -116,7 +114,7 @@ class Engine(object):
     async def _close_all_spiders(self):
         await self.close_spider(self.spider, reason='finished')
 
-    async def _get_result(self,request,spider,semaphore):
+    async def _get_result(self, request, spider, semaphore):
 
         response = await self.download(request, spider)  # 获得下载器响应
         await self._handle_downloader_output(response, request, spider)  # 将响应输入到下载中间件
@@ -175,7 +173,7 @@ class Engine(object):
         # await slot.nextcall.schedule()
 
     async def crawl(self, request, spider):
-        if isinstance(request,Iterable):
+        if isinstance(request, Iterable):
             logger.debug("request 是迭代器")
             # logger.info(request)
             for req in request:

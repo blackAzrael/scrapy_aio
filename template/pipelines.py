@@ -13,11 +13,11 @@ class DefaultPipelines(object):
         return cls()
 
     async def open_spider(self, spider):
-        logger.info("加载默认管道")
+        logger.info("start spider default pipe")
         pass
 
     async def close_spider(self, spider):
-        print("close spider 00000")
+        logger.info("close spider default pipe")
         pass
 
     async def process_item(self, item, spider):

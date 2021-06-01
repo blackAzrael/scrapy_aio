@@ -18,7 +18,7 @@ import time
 
 import colorlog
 from logging.handlers import TimedRotatingFileHandler
-
+from rich.logging import RichHandler
 # import redis
 
 CURRENT_PATH = os.path.dirname(os.path.abspath(__file__))
@@ -36,12 +36,19 @@ class LogHandler(logging.Logger):
     LogHandler
     """
 
-    def __init__(self, name, level='DEBUG', stream=True, file=True, redis=True):
+    def __new__(cls, *args, **kwargs):
+
+        return super(LogHandler, cls).__new__(cls)
+
+    def __init__(self, name, level='DEBUG', stream=False, file=True, redis=True):
+        # print(name)
         self.name = name
         self.level = level
         logging.Logger.__init__(self, self.name, level=level)
         if stream:
             self.__setStreamHandler__()
+        else:
+            self.__seRichHandler__()
         if file:
             self.__setFileHandler__()
         # if redis:
@@ -76,7 +83,6 @@ class LogHandler(logging.Logger):
         :return:
         """
 
-        # 设置日志回滚, 保存在log目录, 一天保存一个文件, 保留15天
         redis_handler = LoggerHandlerToRedis()
         redis_handler.suffix = '%Y%m%d.log'
         if not level:
@@ -107,6 +113,27 @@ class LogHandler(logging.Logger):
         else:
             stream_handler.setLevel(level)
         self.addHandler(stream_handler)
+
+    def __seRichHandler__(self, level=None):
+        """
+        set file handler
+        :param level:
+        :return:
+        """
+
+        # 设置rich 日志
+        rich_handler = RichHandler()
+        rich_handler.suffix = '%Y%m%d.log'
+        if not level:
+            rich_handler.setLevel(self.level)
+        else:
+            rich_handler.setLevel(level)
+        # formatter = logging.Formatter('%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s')
+        # formatter = logging.Formatter('%(asctime)s [%(filename)s][%(process)d][line:%(lineno)d] %(levelname)s: %(message)s')
+
+        # rich_handler.setFormatter(formatter)
+        self.rich_handler = rich_handler
+        self.addHandler(rich_handler)
 
     def resetName(self, name):
         """

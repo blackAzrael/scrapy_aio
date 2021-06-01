@@ -43,3 +43,6 @@ cd scrapy3
 python3 bing/spider/BingSpider.py
 
 ```
+
+
+### 感谢Jetbrain 为开源事业提供的支持。

@@ -17,7 +17,6 @@ class Spider(object):
         if not hasattr(self, "start_urls"):
             self.start_urls = []
 
-
     @property
     def logger(self):
         logger = logging.getLogger(self.name)
@@ -57,9 +56,10 @@ class Spider(object):
         当线程空闲的时候返回true 关闭爬虫
         '''
         return True
+
     @staticmethod
     def close(spider, reason):
-        closed = getattr(spider, 'closed',None)
+        closed = getattr(spider, 'closed', None)
         if callable(closed):
             return closed(reason)
 
