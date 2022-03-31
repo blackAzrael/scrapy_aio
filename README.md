@@ -20,7 +20,6 @@ https://github.com/xiaochonzi/mavic
  
 ---
 
-## 若有问题欢迎大家提交issue和PR 
 
 ## 使用 
 > pip3 install -r requirements.txt
@@ -44,5 +43,3 @@ python3 bing/spider/BingSpider.py
 
 ```
 
-
-### 感谢Jetbrain 为开源事业提供的支持。
